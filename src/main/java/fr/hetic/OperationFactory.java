@@ -1,6 +1,6 @@
-package src.factories;
+package fr.hetic;
 
-import src.expressions.*;
+import fr.hetic.expressions.*;
 
 public class OperationFactory {
 
