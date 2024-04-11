@@ -26,6 +26,12 @@ class OperationExecutionException extends Exception {
     }
 }
 
+class LineProcessingException extends Exception {
+    public LineProcessingException(String message) {
+        super(message);
+    }
+}
+
 public class Calculateur {
     public static void main(String[] args) {
         if(args.length == 0){
@@ -34,6 +40,9 @@ public class Calculateur {
         }
         File file = new File(args[0]);
         processDirectory(file);
+    }
+    public static void processFileFromDatabase(){
+        // TODO : Implement this method
     }
     public static void processDirectory(File directory) {
         File[] files = directory.listFiles(file -> file.getName().endsWith(".op") || file.isDirectory());
@@ -57,28 +66,38 @@ public class Calculateur {
              BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                try {
-                    String[] parts = line.split(" ");
-                    checkSyntax(line);
-                    
-                        Integer firstNumber = Integer.parseInt(parts[0]);
-                        Integer secondNumber = Integer.parseInt(parts[1]);
-                        String operation = parts[2];
-                        Integer result = calculate(firstNumber, secondNumber, operation);
-                        if (result != null) {
-                            writer.write(firstNumber + " " + operation + " " + secondNumber + " = " + result);
-                            writer.newLine();
-                        } else {
-                            throw new UnsupportedOperatorException(operation + " is not a valid operator");
-                        }
-                } catch (Exception e) {
-                    writer.write("Error: " + e.getMessage());
+                try{
+
+                    line = processLine(line);
+                    writer.write(line);
+                    writer.newLine();
+                }catch (Exception e){
+                    writer.write(e.getMessage());
                     writer.newLine();
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error reading file");
-            System.exit(1);
+
+        }
+    }
+    public static String processLine (String line) throws LineProcessingException {
+        try {
+            String[] parts = line.split(" ");
+            checkSyntax(line);
+            
+                Integer firstNumber = Integer.parseInt(parts[0]);
+                Integer secondNumber = Integer.parseInt(parts[1]);
+                String operation = parts[2];
+                Integer result = calculate(firstNumber, secondNumber, operation);
+                if (result != null) {
+                    return firstNumber + " " + operation + " " + secondNumber + " = " + result;
+                    // writer.write(firstNumber + " " + operation + " " + secondNumber + " = " + result);
+                    // writer.newLine();
+                } else {
+                    throw new UnsupportedOperatorException(operation + " is not a valid operator");
+                }
+        } catch (Exception e) {
+           throw new LineProcessingException(e.getMessage());
         }
     }
 

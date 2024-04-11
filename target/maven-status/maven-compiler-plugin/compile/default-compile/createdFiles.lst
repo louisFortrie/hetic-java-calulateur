@@ -1,4 +1,5 @@
 fr/hetic/Calculateur.class
+fr/hetic/LineProcessingException.class
 fr/hetic/Expression.class
 fr/hetic/expressions/MultiplicationExpression.class
 fr/hetic/SyntaxErrorException.class
