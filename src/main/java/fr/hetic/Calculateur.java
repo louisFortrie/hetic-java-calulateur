@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 
 
-
 class SyntaxErrorException extends Exception {
     public SyntaxErrorException(String message) {
         super(message);
@@ -49,6 +48,7 @@ public class Calculateur {
             }
         } else {
             System.out.println("File or Directory not found " + directory.getPath());
+            System.exit(1);
         }
     }
 
@@ -60,7 +60,7 @@ public class Calculateur {
                 try {
                     String[] parts = line.split(" ");
                     checkSyntax(line);
-                    if (parts.length == 3) {
+                    
                         Integer firstNumber = Integer.parseInt(parts[0]);
                         Integer secondNumber = Integer.parseInt(parts[1]);
                         String operation = parts[2];
@@ -71,10 +71,6 @@ public class Calculateur {
                         } else {
                             throw new UnsupportedOperatorException(operation + " is not a valid operator");
                         }
-                    } else {
-                        throw new SyntaxErrorException(
-                            "Invalid number of arguments expected 3 but found " + parts.length + " in line : " + line);
-                    }
                 } catch (Exception e) {
                     writer.write("Error: " + e.getMessage());
                     writer.newLine();
@@ -82,6 +78,7 @@ public class Calculateur {
             }
         } catch (Exception e) {
             System.out.println("Error reading file");
+            System.exit(1);
         }
     }
 
