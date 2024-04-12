@@ -1,9 +1,8 @@
 package fr.hetic;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+
+import fr.hetic.entities.*;
+import java.io.*;
+import java.sql.*;
 
 
 class SyntaxErrorException extends Exception {
@@ -33,17 +32,81 @@ class LineProcessingException extends Exception {
 }
 
 public class Calculateur {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws LineProcessingException {
         if(args.length == 0){
             System.out.println("No arguments provided. Expected : <directoryName> or <fileName>");
             System.exit(1);
+        }else if(args[0].equals("db")){
+            try{
+                Class.forName("org.postgresql.Driver");
+                getFileFromDb();
+            }catch(Exception e){
+                System.out.println("An error occurred processing file from db: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }else{
+            File file = new File(args[0]);
+            processDirectory(file);
         }
-        File file = new File(args[0]);
-        processDirectory(file);
     }
-    public static void processFileFromDatabase(){
-        // TODO : Implement this method
+    public static void getFileFromDb() throws LineProcessingException{
+        String url = "jdbc:postgresql://SG-hetic-mt4-java-5275-pgsql-master.servers.mongodirector.com:5432/TP";
+        String user = "etudiant";
+        String password = "MT4@hetic2324";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+            String sqlFichier = "SELECT * FROM FICHIER WHERE TYPE = 'OP'";
+
+            try (Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(sqlFichier)) {
+
+                while (rs.next()) {
+                    FileEntity file = new FileEntity();
+                    file.setId(rs.getInt("ID"));
+                    file.setNom(rs.getString("NOM"));
+                    file.setType(rs.getString("TYPE"));
+
+                    processFileFromDb(file, conn);
+                }
+            }
+        } catch (SQLException e) {
+           
+        }
     }
+    public static void processFileFromDb(FileEntity fileEntity, Connection conn) throws LineProcessingException{
+        String outputFilePath = fileEntity.getNom() + ".res";
+    File outputFile = new File(outputFilePath);
+
+    String sqlLigne = "SELECT * FROM LIGNE WHERE FICHIER_ID = " + fileEntity.getId();
+
+    try (Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sqlLigne);
+        BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
+
+            while (rs.next()) {
+                LineEntity line = new LineEntity();
+                line.setId(rs.getInt("ID"));
+                line.setParam1(rs.getInt("PARAM1"));
+                line.setParam2(rs.getInt("PARAM2"));
+                line.setOperateur(rs.getString("OPERATEUR").charAt(0));
+                line.setFichierId(rs.getInt("FICHIER_ID"));
+
+                try {
+                   String lineString = line.getParam1() + " " + line.getParam2() + " " + line.getOperateur();
+                   String result = processLine(lineString);
+                   writer.write(result);
+                   writer.newLine();
+                } catch (Exception e) {
+                    writer.write(e.getMessage());
+                    writer.newLine();
+                }
+            }
+        } catch (SQLException | IOException e) {
+            System.out.println("An error occurred processing file " + fileEntity.getNom() + ": " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
     public static void processDirectory(File directory) {
         File[] files = directory.listFiles(file -> file.getName().endsWith(".op") || file.isDirectory());
         if (files != null) {

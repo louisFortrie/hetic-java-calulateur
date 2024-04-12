@@ -3,7 +3,7 @@
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/home/louis-fortrie/Bureau/hetoc/hetic-java-calulateur/target/test-classes:/home/louis-fortrie/Bureau/hetoc/hetic-java-calulateur/target/classes:/home/louis-fortrie/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.7.0/junit-jupiter-api-5.7.0.jar:/home/louis-fortrie/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/home/louis-fortrie/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/louis-fortrie/.m2/repository/org/junit/platform/junit-platform-commons/1.7.0/junit-platform-commons-1.7.0.jar:/home/louis-fortrie/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.7.0/junit-jupiter-engine-5.7.0.jar:/home/louis-fortrie/.m2/repository/org/junit/platform/junit-platform-engine/1.7.0/junit-platform-engine-1.7.0.jar:"/>
+    <property name="java.class.path" value="/home/louis-fortrie/Bureau/hetoc/hetic-java-calulateur/target/test-classes:/home/louis-fortrie/Bureau/hetoc/hetic-java-calulateur/target/classes:/home/louis-fortrie/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.7.0/junit-jupiter-api-5.7.0.jar:/home/louis-fortrie/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/home/louis-fortrie/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/louis-fortrie/.m2/repository/org/junit/platform/junit-platform-commons/1.7.0/junit-platform-commons-1.7.0.jar:/home/louis-fortrie/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.7.0/junit-jupiter-engine-5.7.0.jar:/home/louis-fortrie/.m2/repository/org/junit/platform/junit-platform-engine/1.7.0/junit-platform-engine-1.7.0.jar:/home/louis-fortrie/.m2/repository/org/postgresql/postgresql/42.7.3/postgresql-42.7.3.jar:/home/louis-fortrie/.m2/repository/org/checkerframework/checker-qual/3.42.0/checker-qual-3.42.0.jar:"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
@@ -12,9 +12,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="FR"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/jdk-21-oracle-x64/lib"/>
-    <property name="sun.java.command" value="/home/louis-fortrie/Bureau/hetoc/hetic-java-calulateur/target/surefire/surefirebooter8820076829982669732.jar /home/louis-fortrie/Bureau/hetoc/hetic-java-calulateur/target/surefire 2024-04-12T00-19-24_628-jvmRun1 surefire4263891943278973001tmp surefire_010506116609747672576tmp"/>
+    <property name="sun.java.command" value="/home/louis-fortrie/Bureau/hetoc/hetic-java-calulateur/target/surefire/surefirebooter2017383487610310455.jar /home/louis-fortrie/Bureau/hetoc/hetic-java-calulateur/target/surefire 2024-04-12T16-09-44_122-jvmRun1 surefire17104661760396545014tmp surefire_03008972576016482939tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/home/louis-fortrie/Bureau/hetoc/hetic-java-calulateur/target/test-classes:/home/louis-fortrie/Bureau/hetoc/hetic-java-calulateur/target/classes:/home/louis-fortrie/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.7.0/junit-jupiter-api-5.7.0.jar:/home/louis-fortrie/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/home/louis-fortrie/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/louis-fortrie/.m2/repository/org/junit/platform/junit-platform-commons/1.7.0/junit-platform-commons-1.7.0.jar:/home/louis-fortrie/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.7.0/junit-jupiter-engine-5.7.0.jar:/home/louis-fortrie/.m2/repository/org/junit/platform/junit-platform-engine/1.7.0/junit-platform-engine-1.7.0.jar:"/>
+    <property name="surefire.test.class.path" value="/home/louis-fortrie/Bureau/hetoc/hetic-java-calulateur/target/test-classes:/home/louis-fortrie/Bureau/hetoc/hetic-java-calulateur/target/classes:/home/louis-fortrie/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.7.0/junit-jupiter-api-5.7.0.jar:/home/louis-fortrie/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/home/louis-fortrie/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/louis-fortrie/.m2/repository/org/junit/platform/junit-platform-commons/1.7.0/junit-platform-commons-1.7.0.jar:/home/louis-fortrie/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.7.0/junit-jupiter-engine-5.7.0.jar:/home/louis-fortrie/.m2/repository/org/junit/platform/junit-platform-engine/1.7.0/junit-platform-engine-1.7.0.jar:/home/louis-fortrie/.m2/repository/org/postgresql/postgresql/42.7.3/postgresql-42.7.3.jar:/home/louis-fortrie/.m2/repository/org/checkerframework/checker-qual/3.42.0/checker-qual-3.42.0.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/louis-fortrie"/>
     <property name="user.language" value="fr"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/louis-fortrie/Bureau/hetoc/hetic-java-calulateur/target/surefire/surefirebooter8820076829982669732.jar"/>
+    <property name="surefire.real.class.path" value="/home/louis-fortrie/Bureau/hetoc/hetic-java-calulateur/target/surefire/surefirebooter2017383487610310455.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.2+13-LTS-58"/>
     <property name="user.name" value="louis-fortrie"/>
