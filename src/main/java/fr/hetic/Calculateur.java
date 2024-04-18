@@ -1,6 +1,7 @@
 package fr.hetic;
 
 import fr.hetic.entities.*;
+import java.util.Properties;
 import java.io.*;
 import java.sql.*;
 
@@ -33,21 +34,35 @@ class LineProcessingException extends Exception {
 
 public class Calculateur {
     public static void main(String[] args) throws LineProcessingException {
-        if(args.length == 0){
+        Properties properties = new Properties();
+        try{
+            properties.load(new FileInputStream("src/main/resources/application.properties"));
+            String readerType = properties.getProperty("reader.type");
+            
+            if ("FILE".equals(readerType)) {
+                 if(args.length == 0){
             System.out.println("No arguments provided. Expected : <directoryName> or <fileName>");
             System.exit(1);
-        }else if(args[0].equals("db")){
-            try{
-                Class.forName("org.postgresql.Driver");
-                getFileFromDb();
-            }catch(Exception e){
-                System.out.println("An error occurred processing file from db: " + e.getMessage());
-                e.printStackTrace();
             }
-        }else{
-            File file = new File(args[0]);
-            processDirectory(file);
+            else{
+                File file = new File(args[0]);
+                processDirectory(file);
+            }
+        } else if ("JDBC".equals(readerType)) {
+            
+        try{
+            Class.forName("org.postgresql.Driver");
+            getFileFromDb();
+        }catch(Exception e){
+            System.out.println("An error occurred processing file from db: " + e.getMessage());
+            e.printStackTrace();
         }
+        }
+    }catch(Exception e){
+        System.out.println("An error occurred loading properties file: " + e.getMessage());
+        e.printStackTrace();
+    }
+       
     }
     public static void getFileFromDb() throws LineProcessingException{
         String url = "jdbc:postgresql://SG-hetic-mt4-java-5275-pgsql-master.servers.mongodirector.com:5432/TP";
