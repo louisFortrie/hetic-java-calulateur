@@ -1,12 +1,9 @@
 fr\hetic\OperationFactory.class
 fr\hetic\Expression.class
-fr\hetic\SyntaxErrorException.class
-fr\hetic\UnsupportedOperatorException.class
-fr\hetic\entities\LineEntity.class
 fr\hetic\expressions\AdditionExpression.class
 fr\hetic\expressions\MultiplicationExpression.class
+fr\hetic\Calculateur.class
+fr\hetic\entities\LineEntity.class
 fr\hetic\entities\FileEntity.class
 fr\hetic\LineProcessingException.class
-fr\hetic\Calculateur.class
-fr\hetic\OperationExecutionException.class
 fr\hetic\expressions\SubtractionExpression.class
